@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.invariant.rs</groupId>
+    <artifactId>posiflex-aura</artifactId>
+    <version>0.0.1</version>
+    <description>Web Application for test convert DOC and DOCX to PDF</description>
+
+     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.compiler.version>1.8</java.compiler.version>
+        <jssc.version>2.8.0</jssc.version>
+
+        <spock.core.version>1.0-groovy-2.4</spock.core.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scream3r</groupId>
+            <artifactId>jssc</artifactId>
+            <version>${jssc.version}</version>
+        </dependency>
+	</dependencies>
+
+</project>
