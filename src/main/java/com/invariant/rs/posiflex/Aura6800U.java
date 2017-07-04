@@ -39,6 +39,8 @@ public class Aura6800U {
 
         // FONT 3
         public static final char[] FONT3 = new char[]{27, 105, 32};
+        public static final char[] FONT31 = new char[]{27, 160};
+
         // FONT 3 Underline
         public static final char[] FONT3U = new char[]{27, 105, 160};
         // FONT 3 Bold

@@ -12,6 +12,8 @@ public class SerialPortService {
 
     private static SerialPortService instance;
 
+    public static final String PORT_NAME = "/dev/ttyS5";
+
     public static SerialPortService getInstance() {
         if(instance == null){
             instance = new SerialPortService();
@@ -22,7 +24,7 @@ public class SerialPortService {
     public SerialPort getSerialPort(){
         //dmesg | grep tty
         ///dev/ttyUSB0
-        SerialPort serialPort = new SerialPort("COM1");
+        SerialPort serialPort = new SerialPort(PORT_NAME);
         try {
             serialPort.openPort();
             serialPort.setParams(SerialPort.BAUDRATE_9600,
@@ -32,7 +34,7 @@ public class SerialPortService {
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
             serialPort.addEventListener(new PortReader(serialPort), SerialPort.MASK_RXCHAR);
-            //serialPort.writeString("Get data");
+//            serialPort.writeString("Get data");
         }
         catch (SerialPortException ex) {
             System.out.println(ex);
