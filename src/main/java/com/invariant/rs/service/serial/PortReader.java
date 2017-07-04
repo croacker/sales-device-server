@@ -20,6 +20,7 @@ public class PortReader implements SerialPortEventListener {
         if(event.isRXCHAR() && event.getEventValue() > 0){
             try {
                 String data = serialPort.readString(event.getEventValue());
+                System.out.print("Incoming data:");
                 System.out.println(data.getBytes());
             }
             catch (SerialPortException ex) {

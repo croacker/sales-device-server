@@ -4,12 +4,16 @@ import com.invariant.rs.service.serial.PortReader;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import jssc.SerialPortList;
 
 /**
  *
  */
 public class SerialPortService {
 
+    /**
+     * В отсутствие DI, инстанс
+     */
     private static SerialPortService instance;
 
     public static final String PORT_NAME = "/dev/ttyS5";
@@ -21,9 +25,7 @@ public class SerialPortService {
         return instance;
     }
 
-    public SerialPort getSerialPort(){
-        //dmesg | grep tty
-        ///dev/ttyUSB0
+    public SerialPort getPort(){
         SerialPort serialPort = new SerialPort(PORT_NAME);
         try {
             serialPort.openPort();
@@ -34,11 +36,18 @@ public class SerialPortService {
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
             serialPort.addEventListener(new PortReader(serialPort), SerialPort.MASK_RXCHAR);
-//            serialPort.writeString("Get data");
         }
         catch (SerialPortException ex) {
             System.out.println(ex);
         }
         return serialPort;
+    }
+
+    /**
+     * Аналог dmesg | grep tty
+     * @return
+     */
+    public String[] getPortNames(){
+         return SerialPortList.getPortNames();
     }
 }

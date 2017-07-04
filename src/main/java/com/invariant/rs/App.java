@@ -3,6 +3,7 @@ package com.invariant.rs;
 import java.io.UnsupportedEncodingException;
 
 import com.invariant.rs.posiflex.Aura6800U;
+import com.invariant.rs.posiflex.CommonPrinter;
 import com.invariant.rs.service.SerialPortService;
 
 import jssc.SerialPort;
@@ -20,7 +21,6 @@ public class App {
 
     private void start(){
         SerialPort serialPort = getSerialPort();
-        SerialPortList.getPortNames();
         try {
             writeTest(serialPort);
             serialPort.closePort();
@@ -45,19 +45,19 @@ public class App {
                 "Pos & Flex Print Test");
         serialPort.writeBytes(command);
 
-        command = toBytes(Aura6800U.Commands.LF);
+        command = toBytes(Aura6800U.CommandsChar.LF);
         serialPort.writeBytes(command);
 
         command = toBytes(
 //                new String(Aura6800U.Commands.FONT1) +
-                        new String(Aura6800U.Commands.LF)
+                        new String(Aura6800U.CommandsChar.LF)
         );
         serialPort.writeBytes(command);
 
         command = toBytes(
                 //new String(Aura6800U.Commands.FONT1) +
                 "GOOD 1.........................[42 usd.]"
-                + new String(Aura6800U.Commands.LF)
+                + new String(Aura6800U.CommandsChar.LF)
         );
 //        serialPort.writeBytes(command);
         try {
@@ -72,13 +72,13 @@ public class App {
         command = toBytes(
 //                new String(Aura6800U.Commands.FONT2) +
                         "GOOD 2.........................[42 usd.]"
-                + new String(Aura6800U.Commands.LF)
+                + new String(Aura6800U.CommandsChar.LF)
         );
 //        serialPort.writeBytes(command);
         serialPort.writeString("GOOD 2.........................[42 usd.]");
         writeLf(serialPort);
 
-        command = toBytes(new String(Aura6800U.Commands.FONT31));
+        command = toBytes(new String(Aura6800U.CommandsChar.FONT31));
         serialPort.writeBytes(command);
 
         serialPort.writeString("GOOD 3....[21 usd.]");
@@ -86,10 +86,10 @@ public class App {
         command = toBytes(
 //                new String(Aura6800U.Commands.FONT4) +
                         "GOOD 4....[21 usd.]"
-                + new String(Aura6800U.Commands.LF)
+                + new String(Aura6800U.CommandsChar.LF)
         );
 //        serialPort.writeBytes(command);
-        command = toBytes(new String(Aura6800U.Commands.ESC));
+        command = toBytes(new String(Aura6800U.CommandsChar.ESC));
         writeLf(serialPort);
 
         serialPort.writeBytes(command);
@@ -100,7 +100,7 @@ public class App {
             writeLf(serialPort);
         }
 
-        command = toBytes(Aura6800U.Commands.CUT);
+        command = toBytes(Aura6800U.CommandsChar.CUT);
         serialPort.writeBytes(command);
 
         try {
@@ -117,12 +117,11 @@ public class App {
     private SerialPort getSerialPort(){
         //dmesg | grep tty
         ///dev/ttyUSB0
-        return SerialPortService.getInstance().getSerialPort();
+        return SerialPortService.getInstance().getPort();
     }
 
     private void writeLf(SerialPort serialPort) throws SerialPortException {
-        byte[] command = toBytes(Aura6800U.Commands.LF);
-        serialPort.writeBytes(command);
+        serialPort.writeBytes(CommonPrinter.CommandsByte.LF);
     }
 
 
