@@ -1,4 +1,4 @@
-package com.invariant.rs.configuration;
+package com.invariant.rs.service.serial;
 
 /**
  *
@@ -13,6 +13,6 @@ public interface Configuration {
 
     int getstopBits();
 
-    int getparity();
+    int getParity();
 
 }

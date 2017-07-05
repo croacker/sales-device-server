@@ -3,10 +3,12 @@ package com.invariant.rs;
 import java.io.UnsupportedEncodingException;
 
 import com.invariant.rs.posiflex.Aura6800U;
+import com.invariant.rs.posiflex.CommonPrinter;
 import com.invariant.rs.service.SerialPortService;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import jssc.SerialPortList;
 
 /**
  *
@@ -21,6 +23,7 @@ public class App {
         SerialPort serialPort = getSerialPort();
         try {
             writeTest(serialPort);
+            serialPort.closePort();
         } catch (SerialPortException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
@@ -31,55 +34,94 @@ public class App {
     }
 
     private void writeTest(SerialPort serialPort) throws SerialPortException {
-        byte[] command = toBytes(Aura6800U.Commands.SELECT_INIT_FINAL);
+//        byte[] command = toBytes(Aura6800U.Commands.SELECT_INIT_FINAL);//Команда меняет шрифт на более толстый
+//        serialPort.writeBytes(command);
+
+//        command = toBytes(Aura6800U.Commands.SET_RUSSIAN_CODE_TABLE);
+//        serialPort.writeBytes(command);
+
+        byte[] command = toBytes(
+//                new String(Aura6800U.Commands.FONT4BU) +
+                "Pos & Flex Print Test");
         serialPort.writeBytes(command);
 
-        command = toBytes(Aura6800U.Commands.SET_RUSSIAN_CODE_TABLE);
+        command = toBytes(Aura6800U.CommandsChar.LF);
         serialPort.writeBytes(command);
 
-        command = toBytes(new String(Aura6800U.Commands.FONT4BU) + "Тест устройства");
+        command = toBytes(
+//                new String(Aura6800U.Commands.FONT1) +
+                        new String(Aura6800U.CommandsChar.LF)
+        );
         serialPort.writeBytes(command);
 
-        command = toBytes(Aura6800U.Commands.LF);
+        command = toBytes(
+                //new String(Aura6800U.Commands.FONT1) +
+                "GOOD 1.........................[42 usd.]"
+                + new String(Aura6800U.CommandsChar.LF)
+        );
+//        serialPort.writeBytes(command);
+        try {
+//            serialPort.writeString("Товар 1.....[42 usd.]", "CP866");
+            serialPort.writeString(new String("Товар 1.....[42 usd.]"
+                    .getBytes("UTF-8"), "windows-1251"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        writeLf(serialPort);
+
+        command = toBytes(
+//                new String(Aura6800U.Commands.FONT2) +
+                        "GOOD 2.........................[42 usd.]"
+                + new String(Aura6800U.CommandsChar.LF)
+        );
+//        serialPort.writeBytes(command);
+        serialPort.writeString("GOOD 2.........................[42 usd.]");
+        writeLf(serialPort);
+
+        command = toBytes(new String(Aura6800U.CommandsChar.FONT31));
         serialPort.writeBytes(command);
 
-        command = toBytes(new String(Aura6800U.Commands.FONT1) + new String(Aura6800U.Commands.LF));
+        serialPort.writeString("GOOD 3....[21 usd.]");
+
+        command = toBytes(
+//                new String(Aura6800U.Commands.FONT4) +
+                        "GOOD 4....[21 usd.]"
+                + new String(Aura6800U.CommandsChar.LF)
+        );
+//        serialPort.writeBytes(command);
+        command = toBytes(new String(Aura6800U.CommandsChar.ESC));
+        writeLf(serialPort);
+
+        serialPort.writeBytes(command);
+        serialPort.writeString("GOOD 4....[21 usd.]");
+        writeLf(serialPort);
+
+        for(int i = 0;i < 2; i++) {
+            writeLf(serialPort);
+        }
+
+        command = toBytes(Aura6800U.CommandsChar.CUT);
         serialPort.writeBytes(command);
 
-        command = toBytes(new String(Aura6800U.Commands.FONT1)
-                + "Font 1.........................[42 symbol]"
-                + new String(Aura6800U.Commands.LF));
-        serialPort.writeBytes(command);
-
-        command = toBytes(new String(Aura6800U.Commands.FONT2)
-                + "Font 2.........................[42 symbol]"
-                + new String(Aura6800U.Commands.LF));
-        serialPort.writeBytes(command);
-
-        command = toBytes(new String(Aura6800U.Commands.FONT3)
-                + "Font 3....[21 symbol]"
-                + new String(Aura6800U.Commands.LF));
-        serialPort.writeBytes(command);
-
-        command = toBytes(new String(Aura6800U.Commands.FONT4)
-                + "Font 4....[21 symbol]"
-                + new String(Aura6800U.Commands.LF));
-        serialPort.writeBytes(command);
-
-        command = toBytes(Aura6800U.Commands.LF);
-        serialPort.writeBytes(command);
-
-        command = toBytes(Aura6800U.Commands.LF);
-        serialPort.writeBytes(command);
-
-        command = toBytes(Aura6800U.Commands.CUT);
-        serialPort.writeBytes(command);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * ОК
+     * @return
+     */
     private SerialPort getSerialPort(){
         //dmesg | grep tty
         ///dev/ttyUSB0
-        return SerialPortService.getInstance().getSerialPort();
+        return SerialPortService.getInstance().getPort();
+    }
+
+    private void writeLf(SerialPort serialPort) throws SerialPortException {
+        serialPort.writeBytes(CommonPrinter.CommandsByte.LF);
     }
 
 
