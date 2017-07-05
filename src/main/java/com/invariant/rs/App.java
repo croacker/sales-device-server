@@ -15,6 +15,8 @@ import jssc.SerialPortList;
  */
 public class App {
 
+    public static final String CP866 = "CP866";
+
     public static void main(String[] args) {
         new App().start();
     }
@@ -40,13 +42,32 @@ public class App {
 //        command = toBytes(Aura6800U.Commands.SET_RUSSIAN_CODE_TABLE);
 //        serialPort.writeBytes(command);
 
-        byte[] command = toBytes(
+        byte[] command = getBytesCP866("ааа");
 //                new String(Aura6800U.Commands.FONT4BU) +
-                "Pos & Flex Print Test");
-        serialPort.writeBytes(command);
+//                "Pos & Flex Print Test");
+        //27, 33 - команда
+        //0 - расстояние между буквами
+        //0 - отступ
+        serialPort.writeBytes(new byte[]{27, 32, 0});
 
-        command = toBytes(Aura6800U.CommandsChar.LF);
-        serialPort.writeBytes(command);
+        serialPort.writeBytes(getBytesCP866("Товар А"));
+        writeLf(serialPort);
+
+        serialPort.writeBytes(new byte[]{27, 32, 0});
+        serialPort.writeBytes(getBytesCP866("Товар Б"));
+        writeLf(serialPort);
+
+        serialPort.writeBytes(new byte[]{27, 32, 0});
+        serialPort.writeBytes(getBytesCP866("Товар В"));
+        writeLf(serialPort);
+
+        serialPort.writeBytes(new byte[]{27, 32, 0});
+        serialPort.writeBytes(getBytesCP866("Товар Е"));
+        writeLf(serialPort);
+
+        if(true){
+            return;
+        }
 
         command = toBytes(
 //                new String(Aura6800U.Commands.FONT1) +
@@ -141,6 +162,14 @@ public class App {
     private class SerialPortMock {
         public void writeBytes(byte[] command) {
 
+        }
+    }
+
+    private byte[] getBytesCP866(String str){
+        try {
+            return str.getBytes(CP866);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e.getMessage(), e);
         }
     }
 }
