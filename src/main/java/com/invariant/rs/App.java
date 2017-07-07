@@ -48,7 +48,7 @@ public class App {
         //27, 33 - команда
         //0 - расстояние между буквами
         //0 - отступ
-        serialPort.writeBytes(new byte[]{27, 32, 0});
+        serialPort.writeBytes(new byte[]{27, 32, 0}); //Самый большой шрифт
 
         serialPort.writeBytes(getBytesCP866("Товар А"));
         writeLf(serialPort);
