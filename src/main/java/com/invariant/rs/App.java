@@ -11,7 +11,7 @@ import jssc.SerialPortException;
 import jssc.SerialPortList;
 
 /**
- * dev
+ * dev.0.0.1
  */
 public class App {
 
