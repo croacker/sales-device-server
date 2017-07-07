@@ -12,6 +12,13 @@ public class DataService {
      */
     private static DataService instance;
 
+    /**
+     * Наименования кодировок
+     */
+    public static class Codepage {
+        public static final String CP866 = "CP866";
+    }
+
     public static DataService getInstance() {
         if (instance == null) {
             instance = new DataService();
@@ -27,6 +34,14 @@ public class DataService {
     public byte[] toBytes(String command) {
         try {
             return command.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    public byte[] getBytesCP866(String str){
+        try {
+            return str.getBytes(Codepage.CP866);
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e.getMessage(), e);
         }

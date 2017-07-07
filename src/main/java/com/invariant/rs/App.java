@@ -3,12 +3,12 @@ package com.invariant.rs;
 import java.io.UnsupportedEncodingException;
 
 import com.invariant.rs.posiflex.Aura6800U;
-import com.invariant.rs.posiflex.CommonPrinter;
+import com.invariant.rs.posiflex.Command;
+import com.invariant.rs.service.DataService;
 import com.invariant.rs.service.SerialPortService;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import jssc.SerialPortList;
 
 /**
  * dev.0.0.1
@@ -17,6 +17,10 @@ public class App {
 
     public static final String CP866 = "CP866";
 
+    private DataService getDataService(){
+        return DataService.getInstance();
+    }
+
     public static void main(String[] args) {
         new App().start();
     }
@@ -24,7 +28,8 @@ public class App {
     private void start(){
         SerialPort serialPort = getSerialPort();
         try {
-            writeTest(serialPort);
+            Aura6800U printer = new Aura6800U(serialPort);
+            writeTest1(printer);
             serialPort.closePort();
         } catch (SerialPortException e) {
             throw new RuntimeException(e.getMessage(), e);
@@ -35,16 +40,14 @@ public class App {
         return new SerialPortMock();
     }
 
-    private void writeTest(SerialPort serialPort) throws SerialPortException {
-//        byte[] command = toBytes(Aura6800U.Commands.SELECT_INIT_FINAL);//Команда меняет шрифт на более толстый
-//        serialPort.writeBytes(command);
+    private void writeTest1(Aura6800U printer) throws SerialPortException {
 
-//        command = toBytes(Aura6800U.Commands.SET_RUSSIAN_CODE_TABLE);
-//        serialPort.writeBytes(command);
+        printer.cut();
+    }
 
-        byte[] command = getBytesCP866("ааа");
-//                new String(Aura6800U.Commands.FONT4BU) +
-//                "Pos & Flex Print Test");
+    //TODO:Образец
+    private void writeTest0(SerialPort serialPort) throws SerialPortException {
+        byte[] command;
         //27, 33 - команда
         //0 - расстояние между буквами
         //0 - отступ
@@ -69,16 +72,12 @@ public class App {
             return;
         }
 
-        command = toBytes(
-//                new String(Aura6800U.Commands.FONT1) +
-                        new String(Aura6800U.CommandsChar.LF)
-        );
-        serialPort.writeBytes(command);
+        writeLf(serialPort);
 
         command = toBytes(
                 //new String(Aura6800U.Commands.FONT1) +
                 "GOOD 1.........................[42 usd.]"
-                + new String(Aura6800U.CommandsChar.LF)
+                + new String(Command.CommandsByte6800.LF)
         );
 //        serialPort.writeBytes(command);
         try {
@@ -93,24 +92,21 @@ public class App {
         command = toBytes(
 //                new String(Aura6800U.Commands.FONT2) +
                         "GOOD 2.........................[42 usd.]"
-                + new String(Aura6800U.CommandsChar.LF)
+                + new String(Command.CommandsByte6800.LF)
         );
 //        serialPort.writeBytes(command);
         serialPort.writeString("GOOD 2.........................[42 usd.]");
         writeLf(serialPort);
-
-        command = toBytes(new String(Aura6800U.CommandsChar.FONT31));
-        serialPort.writeBytes(command);
 
         serialPort.writeString("GOOD 3....[21 usd.]");
 
         command = toBytes(
 //                new String(Aura6800U.Commands.FONT4) +
                         "GOOD 4....[21 usd.]"
-                + new String(Aura6800U.CommandsChar.LF)
+                + new String(Command.CommandsByte6800.LF)
         );
 //        serialPort.writeBytes(command);
-        command = toBytes(new String(Aura6800U.CommandsChar.ESC));
+        command = toBytes(new String(Command.CommandsByte6800.ESC));
         writeLf(serialPort);
 
         serialPort.writeBytes(command);
@@ -121,8 +117,7 @@ public class App {
             writeLf(serialPort);
         }
 
-        command = toBytes(Aura6800U.CommandsChar.CUT);
-        serialPort.writeBytes(command);
+        cut(serialPort);
 
         try {
             Thread.sleep(1000);
@@ -142,34 +137,24 @@ public class App {
     }
 
     private void writeLf(SerialPort serialPort) throws SerialPortException {
-        serialPort.writeBytes(CommonPrinter.CommandsByte.LF);
+        serialPort.writeBytes(Command.CommandsByte6800.LF);
     }
 
-
-    private byte[] toBytes(char[] chars) {
-        String command = new String(chars);
-        return toBytes(command);
+    private void cut(SerialPort serialPort) throws SerialPortException {
+        serialPort.writeBytes(Command.CommandsByte6800.CUT);
     }
 
-    private byte[] toBytes(String command) {
-        try {
-            return command.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
+    private byte[] toBytes(String str) {
+        return getDataService().toBytes(str);
+    }
+
+    private byte[] getBytesCP866(String str) {
+        return getDataService().getBytesCP866(str);
     }
 
     private class SerialPortMock {
         public void writeBytes(byte[] command) {
 
-        }
-    }
-
-    private byte[] getBytesCP866(String str){
-        try {
-            return str.getBytes(CP866);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e.getMessage(), e);
         }
     }
 }
