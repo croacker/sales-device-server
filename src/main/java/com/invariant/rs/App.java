@@ -15,8 +15,6 @@ import jssc.SerialPortException;
  */
 public class App {
 
-    public static final String CP866 = "CP866";
-
     private DataService getDataService(){
         return DataService.getInstance();
     }
