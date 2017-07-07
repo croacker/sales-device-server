@@ -1,0 +1,20 @@
+{
+  "header": {
+    "caption": "header"
+  },
+  "rows": [
+    {
+      "name": "name1",
+      "cost": "cost1",
+      "count": "count1"
+    },
+    {
+      "name": "name2",
+      "cost": "cost2",
+      "count": "count2"
+    }
+  ],
+  "summary":{
+    "caption":"caption"
+  }
+}
