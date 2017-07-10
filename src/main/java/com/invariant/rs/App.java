@@ -58,35 +58,35 @@ public class App {
         AuraCheckRow row = new AuraCheckRow();
         row.setGuest("ГОСТЬ 2");
         row.setCount("1");
-        row.setGuest("КАРТОФЕЛЬ ФРИ");
+        row.setGoodName("КАРТОФЕЛЬ ФРИ");
         check.addRow(row);
 
         row = new AuraCheckRow();
         row.setCount("1");
-        row.setGuest("САЛАТ ФРАНЦУЗСКИЙ");
+        row.setGoodName("САЛАТ ФРАНЦУЗСКИЙ");
         check.addRow(row);
 
         row = new AuraCheckRow();
         row.setGuest("ГОСТЬ 3");
         row.setCount("1");
-        row.setGuest("САЛАТ ПТИЧКА");
+        row.setGoodName("САЛАТ ПТИЧКА");
         check.addRow(row);
 
         row = new AuraCheckRow();
         row.setGuest("ГОСТЬ 4");
         row.setCount("1");
-        row.setGuest("САЛАТ ФРАНЦУЗСКИЙ");
+        row.setGoodName("САЛАТ ФРАНЦУЗСКИЙ");
         check.addRow(row);
 
         row = new AuraCheckRow();
         row.setGuest("ГОСТЬ 6");
         row.setCount("1");
-        row.setGuest("САЛАТ ГРЕЧЕСКИЙ");
+        row.setGoodName("САЛАТ ГРЕЧЕСКИЙ");
         check.addRow(row);
 
         row = new AuraCheckRow();
         row.setCount("2");
-        row.setGuest("ПОЗЫ КЛАССИЧЕСКИЕ");
+        row.setGoodName("ПОЗЫ КЛАССИЧЕСКИЕ");
         check.addRow(row);
 
         printer.print(check);
