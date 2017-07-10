@@ -7,6 +7,10 @@ import com.invariant.rs.posiflex.Command;
 import com.invariant.rs.service.DataService;
 import com.invariant.rs.service.SerialPortService;
 
+import com.invariant.rs.service.check.AuraCheck;
+import com.invariant.rs.service.check.AuraCheckHeader;
+import com.invariant.rs.service.check.AuraCheckRow;
+import com.invariant.rs.service.check.Check;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
@@ -27,7 +31,7 @@ public class App {
         SerialPort serialPort = getSerialPort();
         try {
             Aura6800U printer = new Aura6800U(serialPort);
-            writeTest1(printer);
+            writeTestCheck(printer);
             serialPort.closePort();
         } catch (SerialPortException e) {
             throw new RuntimeException(e.getMessage(), e);
@@ -38,9 +42,54 @@ public class App {
         return new SerialPortMock();
     }
 
-    private void writeTest1(Aura6800U printer) throws SerialPortException {
 
-        printer.cut();
+    private void writeTestCheck(Aura6800U printer) throws SerialPortException {
+        AuraCheck check = new AuraCheck();
+
+        AuraCheckHeader header = new AuraCheckHeader();
+        header.setOrderNumber("7_970");
+        header.setPosNumber("1");
+        header.setCheckNumber("77000972");
+        header.setDateTime("28/06/2017 18:49:57");
+        header.setWaiter("Сергей");
+        header.setTable("3.5");
+        check.setHeader(header);
+
+        AuraCheckRow row = new AuraCheckRow();
+        row.setGuest("ГОСТЬ 2");
+        row.setCount("1");
+        row.setGuest("КАРТОФЕЛЬ ФРИ");
+        check.addRow(row);
+
+        row = new AuraCheckRow();
+        row.setCount("1");
+        row.setGuest("САЛАТ ФРАНЦУЗСКИЙ");
+        check.addRow(row);
+
+        row = new AuraCheckRow();
+        row.setGuest("ГОСТЬ 3");
+        row.setCount("1");
+        row.setGuest("САЛАТ ПТИЧКА");
+        check.addRow(row);
+
+        row = new AuraCheckRow();
+        row.setGuest("ГОСТЬ 4");
+        row.setCount("1");
+        row.setGuest("САЛАТ ФРАНЦУЗСКИЙ");
+        check.addRow(row);
+
+        row = new AuraCheckRow();
+        row.setGuest("ГОСТЬ 6");
+        row.setCount("1");
+        row.setGuest("САЛАТ ГРЕЧЕСКИЙ");
+        check.addRow(row);
+
+        row = new AuraCheckRow();
+        row.setCount("2");
+        row.setGuest("ПОЗЫ КЛАССИЧЕСКИЕ");
+        check.addRow(row);
+
+        printer.print(check);
     }
 
     //TODO:Образец

@@ -33,7 +33,7 @@ public class CommonPrinter implements Printer {
      *
      * @throws SerialPortException
      */
-    private void lf() throws SerialPortException {
+    public void lf() {
         writeBytes(Command.CommandsByte6800.LF);
     }
 
@@ -42,7 +42,7 @@ public class CommonPrinter implements Printer {
      *
      * @throws SerialPortException
      */
-    private void esc() throws SerialPortException {
+    public void esc() {
         writeBytes(Command.CommandsByte6800.ESC);
     }
 
@@ -51,7 +51,7 @@ public class CommonPrinter implements Printer {
      *
      * @throws SerialPortException
      */
-    public void cut() throws SerialPortException {
+    public void cut() {
         writeBytes(Command.CommandsByte6800.CUT);
     }
 

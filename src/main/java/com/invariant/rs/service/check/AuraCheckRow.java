@@ -1,20 +1,20 @@
 package com.invariant.rs.service.check;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Created by user on 07.07.2017.
+ *
  */
 public class AuraCheckRow implements CheckRow {
 
-    public String getName() {
-        return "name";
-    }
+    @Getter @Setter
+    String guest;
 
-    public String getCount() {
-        return "count";
-    }
+    @Getter @Setter
+    String goodName;
 
-    public String getCost() {
-        return "cost";
-    }
+    @Getter @Setter
+    String count;
 
 }

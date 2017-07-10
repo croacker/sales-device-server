@@ -7,10 +7,7 @@ import java.util.List;
  */
 public interface Check {
 
-    List<String> getHeader();
+    CheckHeader getHeader();
 
-    List<CheckRow> getCheckRow();
-
-    List<String> getSummary();
-
+    List<CheckRow> getCheckRows();
 }
