@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Aura6800U extends CommonPrinter {
 
-    public static final int FONT_SMAL_LINE_COUNT = 42;
+    public static final int FONT_SMAL_LINE_COUNT  = 42;
     public static final int FONT_BIG_LINE_COUNT = 24;
 
 
