@@ -90,6 +90,7 @@ public class App {
         check.addRow(row);
 
         printer.print(check);
+//        printer.printTest();
     }
 
     //TODO:Образец
@@ -148,7 +149,7 @@ public class App {
         serialPort.writeString("GOOD 3....[21 usd.]");
 
         command = toBytes(
-//                new String(Aura6800U.Commands.FONT4) +
+//                new String(Aura6800U.Commands.FONT2) +
                         "GOOD 4....[21 usd.]"
                 + new String(Command.CommandsByte6800.LF)
         );

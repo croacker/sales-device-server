@@ -12,13 +12,31 @@ import java.util.List;
  */
 public class Aura6800U extends CommonPrinter {
 
+    public static final int FONT_SMAL_LINE_COUNT = 42;
+    public static final int FONT_BIG_LINE_COUNT = 24;
+
+
     public Aura6800U(SerialPort serialPort) {
         super(serialPort);
     }
 
+    public void printTest() {
+        setFont1();
+        writeString("123456789012345678901234567890123456789012");
+        setFont4();
+        writeString("123456789012345678901234");
+        lf();
+        lf();
+        lf();
+        cut();
+    }
+
     public void print(Check check) {
+        lf();
         printHeader(check.getHeader());
         printRows(check.getCheckRows());
+        lf();
+        lf();
         cut();
     }
 
@@ -28,9 +46,11 @@ public class Aura6800U extends CommonPrinter {
         writeStringCP866("ПОС № " + header.getPosNumber() + "   ЧЕК № " + header.getCheckNumber());
         lf();
         writeStringCP866(header.getDateTime() + "   " + header.getWaiter());
+        lf();
         setFont4();
         writeStringCP866("СТОЛИК " + header.getTable());
         lf();
+        setFont1();
     }
 
     private void printRows(List<CheckRow> rows) {
@@ -44,11 +64,14 @@ public class Aura6800U extends CommonPrinter {
             writeStringCP866(row.getGuest());
             lf();
         }
-        writeString("------------------------------");
+        writeString("------------------------------------------");
         lf();
         setFont4();
         writeStringCP866(row.getCount());
+        writeString("   ");
         writeStringCP866(row.getGoodName());
+        lf();
+        setFont1();
     }
 
 }
