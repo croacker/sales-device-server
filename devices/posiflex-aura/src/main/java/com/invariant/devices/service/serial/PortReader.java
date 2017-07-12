@@ -1,4 +1,4 @@
-package com.invariant.rs.service.serial;
+package com.invariant.devices.service.serial;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;

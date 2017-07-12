@@ -1,4 +1,4 @@
-package com.invariant.rs.printer;
+package com.invariant.devices.printer;
 
 /**
  *

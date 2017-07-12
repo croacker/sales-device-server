@@ -1,4 +1,4 @@
-package com.invariant.rs.service;
+package com.invariant.devices.service;
 
 import java.io.UnsupportedEncodingException;
 

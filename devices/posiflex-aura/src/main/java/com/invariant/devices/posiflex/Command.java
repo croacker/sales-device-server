@@ -1,7 +1,7 @@
-package com.invariant.rs.posiflex;
+package com.invariant.devices.posiflex;
 
 /**
- * Created by user on 07.07.2017.
+ *
  */
 public class Command {
 

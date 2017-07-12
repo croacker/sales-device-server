@@ -1,4 +1,4 @@
-package com.invariant.rs.service.check;
+package com.invariant.devices.service.check;
 
 import java.util.List;
 

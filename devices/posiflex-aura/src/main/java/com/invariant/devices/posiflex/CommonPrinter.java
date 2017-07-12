@@ -1,7 +1,7 @@
-package com.invariant.rs.posiflex;
+package com.invariant.devices.posiflex;
 
-import com.invariant.rs.printer.Printer;
-import com.invariant.rs.service.DataService;
+import com.invariant.devices.printer.Printer;
+import com.invariant.devices.service.DataService;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 

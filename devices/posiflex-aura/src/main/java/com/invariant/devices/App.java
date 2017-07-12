@@ -1,16 +1,15 @@
-package com.invariant.rs;
+package com.invariant.devices;
 
 import java.io.UnsupportedEncodingException;
 
-import com.invariant.rs.posiflex.Aura6800U;
-import com.invariant.rs.posiflex.Command;
-import com.invariant.rs.service.DataService;
-import com.invariant.rs.service.SerialPortService;
+import com.invariant.devices.posiflex.Aura6800U;
+import com.invariant.devices.posiflex.Command;
+import com.invariant.devices.service.DataService;
+import com.invariant.devices.service.SerialPortService;
 
-import com.invariant.rs.service.check.AuraCheck;
-import com.invariant.rs.service.check.AuraCheckHeader;
-import com.invariant.rs.service.check.AuraCheckRow;
-import com.invariant.rs.service.check.Check;
+import com.invariant.devices.service.check.AuraCheck;
+import com.invariant.devices.service.check.AuraCheckHeader;
+import com.invariant.devices.service.check.AuraCheckRow;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 

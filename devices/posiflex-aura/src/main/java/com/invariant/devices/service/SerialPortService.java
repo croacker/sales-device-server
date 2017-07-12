@@ -1,6 +1,6 @@
-package com.invariant.rs.service;
+package com.invariant.devices.service;
 
-import com.invariant.rs.service.serial.PortReader;
+import com.invariant.devices.service.serial.PortReader;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;

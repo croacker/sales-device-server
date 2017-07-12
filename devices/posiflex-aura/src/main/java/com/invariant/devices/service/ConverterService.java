@@ -1,13 +1,13 @@
-package com.invariant.rs.service;
+package com.invariant.devices.service;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.invariant.rs.service.check.AuraCheck;
-import com.invariant.rs.service.check.AuraCheckHeader;
-import com.invariant.rs.service.check.AuraCheckRow;
-import com.invariant.rs.service.check.Check;
+import com.invariant.devices.service.check.AuraCheck;
+import com.invariant.devices.service.check.AuraCheckHeader;
+import com.invariant.devices.service.check.AuraCheckRow;
+import com.invariant.devices.service.check.Check;
 
 /**
  *
