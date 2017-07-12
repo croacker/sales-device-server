@@ -3,10 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.invariant.rs</groupId>
-    <artifactId>posiflex-aura</artifactId>
+    <groupId>com.invariant.sales-server</groupId>
+    <artifactId>app</artifactId>
     <version>0.0.1</version>
-    <description>Web Application for test convert DOC and DOCX to PDF</description>
+    <packaging>pom</packaging>
+    <description>Http sale devices server</description>
+
+    <modules>
+        <module>devices</module>
+    </modules>
 
      <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,24 +21,5 @@
         <jackson.databind.version>2.6.3</jackson.databind.version>
         <spock.core.version>1.0-groovy-2.4</spock.core.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.scream3r</groupId>
-            <artifactId>jssc</artifactId>
-            <version>${jssc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.databind.version}</version>
-        </dependency>
-	</dependencies>
 
 </project>
