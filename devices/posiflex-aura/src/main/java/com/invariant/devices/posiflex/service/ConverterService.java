@@ -1,13 +1,13 @@
-package com.invariant.devices.service;
+package com.invariant.devices.posiflex.service;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.invariant.devices.service.check.AuraCheck;
-import com.invariant.devices.service.check.AuraCheckHeader;
-import com.invariant.devices.service.check.AuraCheckRow;
-import com.invariant.devices.service.check.Check;
+import com.invariant.devices.posiflex.service.check.AuraCheck;
+import com.invariant.devices.posiflex.service.check.AuraCheckHeader;
+import com.invariant.devices.posiflex.service.check.AuraCheckRow;
+import com.invariant.devices.posiflex.service.check.Check;
 
 /**
  *

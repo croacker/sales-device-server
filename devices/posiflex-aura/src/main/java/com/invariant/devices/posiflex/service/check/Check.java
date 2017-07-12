@@ -1,4 +1,4 @@
-package com.invariant.devices.service.check;
+package com.invariant.devices.posiflex.service.check;
 
 import java.util.List;
 

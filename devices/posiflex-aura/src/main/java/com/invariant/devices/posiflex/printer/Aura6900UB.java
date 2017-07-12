@@ -1,4 +1,4 @@
-package com.invariant.devices.posiflex;
+package com.invariant.devices.posiflex.printer;
 
 import jssc.SerialPort;
 

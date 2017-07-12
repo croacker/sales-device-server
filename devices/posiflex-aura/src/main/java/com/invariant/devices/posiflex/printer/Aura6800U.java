@@ -1,8 +1,8 @@
-package com.invariant.devices.posiflex;
+package com.invariant.devices.posiflex.printer;
 
-import com.invariant.devices.service.check.Check;
-import com.invariant.devices.service.check.CheckHeader;
-import com.invariant.devices.service.check.CheckRow;
+import com.invariant.devices.posiflex.service.check.Check;
+import com.invariant.devices.posiflex.service.check.CheckHeader;
+import com.invariant.devices.posiflex.service.check.CheckRow;
 import jssc.SerialPort;
 
 import java.util.List;

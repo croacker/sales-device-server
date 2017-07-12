@@ -1,4 +1,4 @@
-package com.invariant.devices.service.serial;
+package com.invariant.devices.posiflex.service.serial;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;

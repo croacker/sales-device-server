@@ -1,4 +1,4 @@
-package com.invariant.devices.service;
+package com.invariant.devices.posiflex.service;
 
 import java.io.UnsupportedEncodingException;
 

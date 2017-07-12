@@ -1,7 +1,6 @@
-package com.invariant.devices.posiflex;
+package com.invariant.devices.posiflex.printer;
 
-import com.invariant.devices.printer.Printer;
-import com.invariant.devices.service.DataService;
+import com.invariant.devices.posiflex.service.DataService;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
@@ -34,7 +33,7 @@ public class CommonPrinter implements Printer {
      * @throws SerialPortException
      */
     public void lf() {
-        writeBytes(Command.CommandsByte6800.LF);
+        writeBytes(Command6800.LF);
     }
 
     /**
@@ -43,7 +42,7 @@ public class CommonPrinter implements Printer {
      * @throws SerialPortException
      */
     public void esc() {
-        writeBytes(Command.CommandsByte6800.ESC);
+        writeBytes(Command6800.ESC);
     }
 
     /**
@@ -52,7 +51,7 @@ public class CommonPrinter implements Printer {
      * @throws SerialPortException
      */
     public void cut() {
-        writeBytes(Command.CommandsByte6800.CUT);
+        writeBytes(Command6800.CUT);
     }
 
     /**
@@ -61,7 +60,7 @@ public class CommonPrinter implements Printer {
      * @throws SerialPortException
      */
     public void setFont1() {
-        writeBytes(Command.CommandsByte6800.FONT_NORMAL_1224);
+        writeBytes(Command6800.FONT_NORMAL_1224);
     }
 
     /**
@@ -70,7 +69,7 @@ public class CommonPrinter implements Printer {
      * @throws SerialPortException
      */
     public void setFont0() {
-        writeBytes(Command.CommandsByte6800.FONT0);
+        writeBytes(Command6800.FONT0);
     }
 
     /**
@@ -79,7 +78,7 @@ public class CommonPrinter implements Printer {
      * @throws SerialPortException
      */
     public void setFont4() {
-        writeBytes(Command.CommandsByte6800.FONT4);
+        writeBytes(Command6800.FONT4);
     }
 
 
