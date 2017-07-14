@@ -32,6 +32,40 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.atol.drivers</groupId>
+            <artifactId>fptrlib</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.3.1</version>
+                <executions>
+                    <execution>
+                        <id>install-paho</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <file>${project.basedir}/lib/com/atol/drivers/fptrlib.jar</file>
+                            <groupId>com.atol.drivers</groupId>
+                            <artifactId>fptrlib</artifactId>
+                            <version>1.0.0</version>
+                            <generatePom>true</generatePom>
+                            <createChecksum>true</createChecksum>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
