@@ -1,31 +1,21 @@
-package com.invariant.devices.atolfr.service;
+package com.invariant.devices.service;
 
-import com.invariant.devices.atolfr.service.serial.PortReader;
+import com.invariant.devices.service.serial.PortReader;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
 
 /**
- * Created by agumenyuk on 12.07.2017.
+ * 15.07.2017.
  */
 public class SerialPortService {
-
-    /**
-     * USB to COM
-     */
-    public static final String SERIAL_USB_0 = "ttyACM0";
-
-    /**
-     * USB to COM
-     */
-    public static final String SERIAL_USB_1 = "ttyACM1";
 
     /**
      * В отсутствие DI, инстанс
      */
     private static SerialPortService instance;
 
-    public static final String PORT_NAME = "/dev/" + SERIAL_USB_1;
+    public static final String PORT_NAME = "/dev/ttyS5";
 
     public static SerialPortService getInstance() {
         if(instance == null){
@@ -59,4 +49,5 @@ public class SerialPortService {
     public String[] getPortNames(){
         return SerialPortList.getPortNames();
     }
+
 }

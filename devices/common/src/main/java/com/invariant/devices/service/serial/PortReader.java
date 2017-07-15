@@ -1,4 +1,4 @@
-package com.invariant.devices.atolfr.service.serial;
+package com.invariant.devices.service.serial;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -6,7 +6,7 @@ import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 
 /**
- *
+ * 15.07.2017.
  */
 public class PortReader implements SerialPortEventListener {
 

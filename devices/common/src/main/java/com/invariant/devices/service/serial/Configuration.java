@@ -1,7 +1,7 @@
-package com.invariant.devices.posiflex.service.serial;
+package com.invariant.devices.service.serial;
 
 /**
- *
+ * 15.07.2017.
  */
 public interface Configuration {
 
@@ -14,5 +14,6 @@ public interface Configuration {
     int getstopBits();
 
     int getParity();
+
 
 }

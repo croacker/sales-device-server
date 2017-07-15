@@ -2,7 +2,7 @@ package com.invariant.devices.posiflex;
 
 import com.invariant.devices.posiflex.printer.Aura6800U;
 import com.invariant.devices.posiflex.service.DataService;
-import com.invariant.devices.posiflex.service.SerialPortService;
+import com.invariant.devices.service.SerialPortService;
 import com.invariant.devices.posiflex.service.check.AuraCheck;
 import com.invariant.devices.posiflex.service.check.AuraCheckHeader;
 import com.invariant.devices.posiflex.service.check.AuraCheckRow;

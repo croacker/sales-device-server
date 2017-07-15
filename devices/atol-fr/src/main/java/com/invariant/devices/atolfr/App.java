@@ -1,7 +1,6 @@
 package com.invariant.devices.atolfr;
 
-import com.atol.drivers.fptr.IFptr;
-import com.invariant.devices.atolfr.service.SerialPortService;
+import com.invariant.devices.service.SerialPortService;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 

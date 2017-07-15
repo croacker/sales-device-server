@@ -18,6 +18,7 @@
     <modules>
         <module>posiflex-aura</module>
         <module>atol-fr</module>
+        <module>common</module>
     </modules>
 
 </project>
