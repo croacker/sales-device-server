@@ -10,7 +10,7 @@ import java.io.IOException;
  * Точка входа для http-сервера
  */
 @Slf4j
-public class SimpleHttpApplication {
+public class SaleDeviceServerHttpApplication {
 
     private static ApplicationContext getContext() {
         return ContextLoader.getInstance().getContext();
@@ -18,7 +18,7 @@ public class SimpleHttpApplication {
 
     public static void main(String[] args) throws IOException {
         loadContext();
-        SimpleHttpApplication application = getContext().getBean(SimpleHttpApplication.class);
+        SaleDeviceServerHttpApplication application = getContext().getBean(SaleDeviceServerHttpApplication.class);
         application.start();
     }
 

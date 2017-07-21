@@ -1,5 +1,6 @@
 package com.invariant.saleserver;
 
+import com.invariant.saleserver.configuration.ContextConfiguration;
 import lombok.Getter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

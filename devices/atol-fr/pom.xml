@@ -37,12 +37,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.atol.drivers</groupId>
-            <artifactId>fptrlib</artifactId>
-            <version>1.0.0</version>
-        </dependency>
     </dependencies>
 
     <build>

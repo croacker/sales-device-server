@@ -1,8 +1,8 @@
 package com.invariant.devices.posiflex.printer;
 
-import com.invariant.devices.posiflex.service.check.Check;
-import com.invariant.devices.posiflex.service.check.CheckHeader;
-import com.invariant.devices.posiflex.service.check.CheckRow;
+import com.invariant.devices.check.Check;
+import com.invariant.devices.check.CheckHeader;
+import com.invariant.devices.check.CheckRow;
 import jssc.SerialPort;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class Aura6800U extends CommonPrinter {
     public void print(Check check) {
         lf();
         printHeader(check.getHeader());
-        printRows(check.getCheckRows());
+        printRows(check.getRows());
         lf();
         lf();
         cut();

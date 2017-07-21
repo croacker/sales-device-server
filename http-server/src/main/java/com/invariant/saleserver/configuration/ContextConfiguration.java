@@ -1,6 +1,7 @@
-package com.invariant.saleserver;
+package com.invariant.saleserver.configuration;
 
 import com.google.gson.Gson;
+import com.invariant.saleserver.SaleDeviceServerHttpApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +20,8 @@ import javax.activation.MimetypesFileTypeMap;
 public class ContextConfiguration {
 
     @Bean
-    public SimpleHttpApplication asposeTestEntrypoint(){
-        return new SimpleHttpApplication();
+    public SaleDeviceServerHttpApplication saleDeviceServerEntrypoint(){
+        return new SaleDeviceServerHttpApplication();
     }
 
     @Bean

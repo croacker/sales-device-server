@@ -3,7 +3,7 @@ package com.invariant.devices.service.serial;
 /**
  * 15.07.2017.
  */
-public interface Configuration {
+public interface SerialPortConfiguration {
 
     String getName();
 
@@ -11,7 +11,7 @@ public interface Configuration {
 
     int getDataBits();
 
-    int getstopBits();
+    int getStopBits();
 
     int getParity();
 

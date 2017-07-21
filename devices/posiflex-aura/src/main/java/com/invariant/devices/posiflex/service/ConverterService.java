@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.invariant.devices.posiflex.service.check.AuraCheck;
 import com.invariant.devices.posiflex.service.check.AuraCheckHeader;
 import com.invariant.devices.posiflex.service.check.AuraCheckRow;
-import com.invariant.devices.posiflex.service.check.Check;
+import com.invariant.devices.check.Check;
 
 /**
  *

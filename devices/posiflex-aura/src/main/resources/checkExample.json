@@ -1,40 +1,45 @@
 {
-  "header": {
-    "orderNumber": "7_970",
-    "posNumber": "1",
-    "checkNumber": "77000972",
-    "dateTime": "28/06/2017 18:49:57",
-    "waiter": "Сергей",
-    "table": "3.5"
+  "device": {
+    "id": 1
   },
-  "checkRows": [
-    {
-      "guest": "ГОСТЬ 2",
-      "count": "1",
-      "goodName": "КАРТОФЕЛЬ ФРИ"
+  "check": {
+    "header": {
+      "orderNumber": "7_970",
+      "posNumber": "1",
+      "checkNumber": "77000972",
+      "dateTime": "28/06/2017 18:49:57",
+      "waiter": "Сергей",
+      "table": "3.5"
     },
-    {
-      "count": "1",
-      "goodName": "САЛАТ ФРАНЦУЗСКИЙ"
-    },
-    {
-      "guest": "ГОСТЬ 3",
-      "count": "1",
-      "goodName": "САЛАТ ПТИЧКА"
-    },
-    {
-      "guest": "ГОСТЬ 4",
-      "count": "1",
-      "goodName": "САЛАТ ФРАНЦУЗСКИЙ"
-    },
-    {
-      "guest": "ГОСТЬ 6",
-      "count": "1",
-      "goodName": "САЛАТ ГРЕЧЕСКИЙ"
-    },
-    {
-      "count": "2",
-      "goodName": "ПОЗЫ КЛАССИЧЕСКИЕ"
-    }
-  ]
+    "checkRows": [
+      {
+        "guest": "ГОСТЬ 2",
+        "count": "1",
+        "goodName": "КАРТОФЕЛЬ ФРИ"
+      },
+      {
+        "count": "1",
+        "goodName": "САЛАТ ФРАНЦУЗСКИЙ"
+      },
+      {
+        "guest": "ГОСТЬ 3",
+        "count": "1",
+        "goodName": "САЛАТ ПТИЧКА"
+      },
+      {
+        "guest": "ГОСТЬ 4",
+        "count": "1",
+        "goodName": "САЛАТ ФРАНЦУЗСКИЙ"
+      },
+      {
+        "guest": "ГОСТЬ 6",
+        "count": "1",
+        "goodName": "САЛАТ ГРЕЧЕСКИЙ"
+      },
+      {
+        "count": "2",
+        "goodName": "ПОЗЫ КЛАССИЧЕСКИЕ"
+      }
+    ]
+  }
 }

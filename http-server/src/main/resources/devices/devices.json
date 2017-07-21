@@ -1,0 +1,10 @@
+[
+  {
+    "id": "posiflexAura",
+    "port": "/dev/ttyS5",
+    "baudRate": "9600",
+    "dataBits": "8",
+    "stopBits": "1",
+    "parity": "0"
+  }
+]

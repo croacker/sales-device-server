@@ -1,8 +1,5 @@
-package com.invariant.devices.posiflex.service.check;
+package com.invariant.devices.check;
 
-/**
- *
- */
 public interface CheckHeader {
 
     String getOrderNumber();
@@ -16,4 +13,5 @@ public interface CheckHeader {
     String getWaiter();
 
     String getTable();
+
 }

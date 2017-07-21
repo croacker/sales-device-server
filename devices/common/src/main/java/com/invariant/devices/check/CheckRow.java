@@ -1,8 +1,5 @@
-package com.invariant.devices.posiflex.service.check;
+package com.invariant.devices.check;
 
-/**
- *
- */
 public interface CheckRow {
 
     String getGuest();
