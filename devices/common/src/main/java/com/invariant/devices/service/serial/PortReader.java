@@ -4,12 +4,14 @@ import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.PrintStream;
 
 /**
  * 15.07.2017.
  */
+@Slf4j
 public class PortReader implements SerialPortEventListener {
 
     private SerialPort serialPort;
@@ -28,8 +30,8 @@ public class PortReader implements SerialPortEventListener {
                 printStream.print("Incoming data:");
                 printStream.println(data.getBytes());
             }
-            catch (SerialPortException ex) {
-                printStream.println(ex);
+            catch (SerialPortException e) {
+                log.error(e.getMessage(), e);
             }
         }
     }

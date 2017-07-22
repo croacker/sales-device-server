@@ -39,6 +39,8 @@ public class AppHttpServer {
         routes.put("/",  getContext().getBean(IndexHandler.class));
         routes.put("/api", getContext().getBean(ApiHandler.class));
         routes.put("/api/print", getContext().getBean(PrintCheckHandler.class));
+        routes.put("/api/devices", getContext().getBean(DevicesListHandler.class));
+
         routes.put("/css", getContext().getBean(StaticHandler.class));
         routes.put("/js", getContext().getBean(StaticHandler.class));
         routes.put("/fonts", getContext().getBean(StaticHandler.class));

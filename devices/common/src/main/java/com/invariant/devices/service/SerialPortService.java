@@ -7,8 +7,9 @@ import jssc.SerialPortException;
 import jssc.SerialPortList;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.PrintStream;
+
 /**
- *
  * 15.07.2017.
  */
 @Slf4j
@@ -22,36 +23,24 @@ public class SerialPortService {
     public static final String PORT_NAME = "/dev/ttyS5";
 
     public static SerialPortService getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new SerialPortService();
         }
         return instance;
     }
 
-    public SerialPort getPort(){
-        SerialPort serialPort = new SerialPort(PORT_NAME);
-        try {
-            serialPort.openPort();
-            serialPort.setParams(SerialPort.BAUDRATE_9600,
-                    SerialPort.DATABITS_8,
-                    SerialPort.STOPBITS_1,
-                    SerialPort.PARITY_NONE);
-            serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
-                    SerialPort.FLOWCONTROL_RTSCTS_OUT);
-            serialPort.addEventListener(new PortReader(serialPort, System.out), SerialPort.MASK_RXCHAR);
-        }
-        catch (SerialPortException ex) {
-            System.out.println(ex);
-        }
-        return serialPort;
+    public SerialPort getPort() {
+        SerialPortConfiguration configuration = SerialPortConfiguration.getBuilder().setName(PORT_NAME)
+                .setBaudRate("9600").setDataBits("8").setStopBits("1")
+                .setParity("0").build();
+        return getPort(configuration, System.out);
     }
 
     /**
-     *
      * @param configuration
      * @return
      */
-    public SerialPort getPort(SerialPortConfiguration configuration){
+    public SerialPort getPort(SerialPortConfiguration configuration, PrintStream printStream) {
         SerialPort serialPort = new SerialPort(configuration.getName());
         try {
             serialPort.openPort();
@@ -61,19 +50,19 @@ public class SerialPortService {
                     configuration.getParity());
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
-            serialPort.addEventListener(new PortReader(serialPort, System.out), SerialPort.MASK_RXCHAR);
-        }
-        catch (SerialPortException ex) {
-            System.out.println(ex);
+            serialPort.addEventListener(new PortReader(serialPort, printStream), SerialPort.MASK_RXCHAR);
+        } catch (SerialPortException e) {
+            log.error(e.getMessage(), e);
         }
         return serialPort;
     }
 
     /**
      * Аналог dmesg | grep tty
+     *
      * @return
      */
-    public String[] getPortNames(){
+    public String[] getPortNames() {
         return SerialPortList.getPortNames();
     }
 

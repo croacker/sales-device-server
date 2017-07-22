@@ -3,6 +3,8 @@ package com.invariant.devices.posiflex.printer;
 import com.invariant.devices.check.Check;
 import com.invariant.devices.check.CheckHeader;
 import com.invariant.devices.check.CheckRow;
+import com.invariant.devices.posiflex.service.check.AuraCheck;
+import com.invariant.devices.posiflex.service.check.AuraCheckRow;
 import jssc.SerialPort;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class Aura6800U extends CommonPrinter {
         cut();
     }
 
-    public void print(Check check) {
+    public void print(AuraCheck check) {
         lf();
         printHeader(check.getHeader());
         printRows(check.getRows());
@@ -53,7 +55,7 @@ public class Aura6800U extends CommonPrinter {
         setFont1();
     }
 
-    private void printRows(List<CheckRow> rows) {
+    private void printRows(List<AuraCheckRow> rows) {
         for (CheckRow row : rows) {
             printRow(row);
         }

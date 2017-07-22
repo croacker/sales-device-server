@@ -38,7 +38,6 @@ public class App {
         return new SerialPortMock();
     }
 
-
     private void writeTestCheck(Aura6800U printer) throws SerialPortException {
         AuraCheck check = new AuraCheck();
 
