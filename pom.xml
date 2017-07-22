@@ -19,6 +19,7 @@
         <java.compiler.version>1.8</java.compiler.version>
         <jssc.version>2.8.0</jssc.version>
         <lombok.version>1.16.18</lombok.version>
+        <commons.lang3.version>3.6</commons.lang3.version>
         <jackson.databind.version>2.6.3</jackson.databind.version>
         <spock.core.version>1.0-groovy-2.4</spock.core.version>
     </properties>

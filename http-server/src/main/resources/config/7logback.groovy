@@ -1,3 +1,5 @@
+package config
+
 import ch.qos.logback.classic.PatternLayout
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder
 import ch.qos.logback.core.ConsoleAppender
@@ -7,7 +9,6 @@ import ch.qos.logback.core.rolling.TimeBasedRollingPolicy
 import java.nio.charset.Charset
 
 import static ch.qos.logback.classic.Level.DEBUG
-//Only for Java 1.7
 
 appender("STDOUT", ConsoleAppender) {
     layout(PatternLayout) {

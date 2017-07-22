@@ -1,8 +1,10 @@
 package com.invariant.devices.posiflex.printer;
 
+import com.invariant.devices.check.Check;
 import com.invariant.devices.posiflex.service.DataService;
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -127,6 +129,10 @@ public class CommonPrinter implements Printer {
         } catch (InterruptedException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
+    }
+
+    public void print(Check check) {
+        throw new NotImplementedException();
     }
 
 }

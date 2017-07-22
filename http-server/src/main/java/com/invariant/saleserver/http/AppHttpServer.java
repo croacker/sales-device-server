@@ -22,7 +22,7 @@ public class AppHttpServer {
 
     private Map<String, HttpHandler> routes = new HashMap<String, HttpHandler>();
 
-    @Value("${server.port}")
+    @Value("${application.port}")
     private Integer port;
 
     private static ApplicationContext getContext(){

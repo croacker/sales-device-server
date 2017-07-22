@@ -16,7 +16,7 @@ import javax.activation.MimetypesFileTypeMap;
  */
 @Configuration
 @ComponentScan(basePackages = {"com.invariant.saleserver.http", "com.invariant.saleserver.service"})
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:config/application.properties")
 public class ContextConfiguration {
 
     @Bean
@@ -38,4 +38,5 @@ public class ContextConfiguration {
     public FileTypeMap getFileTypeMap(){
         return MimetypesFileTypeMap.getDefaultFileTypeMap();
     }
+
 }

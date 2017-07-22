@@ -5,6 +5,8 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 
+import java.io.PrintStream;
+
 /**
  * 15.07.2017.
  */
@@ -12,19 +14,22 @@ public class PortReader implements SerialPortEventListener {
 
     private SerialPort serialPort;
 
-    public PortReader(SerialPort serialPort){
+    private PrintStream printStream;
+
+    public PortReader(SerialPort serialPort, PrintStream printStream){
         this.serialPort = serialPort;
+        this.printStream = printStream;
     }
 
     public void serialEvent(SerialPortEvent event) {
         if(event.isRXCHAR() && event.getEventValue() > 0){
             try {
                 String data = serialPort.readString(event.getEventValue());
-                System.out.print("Incoming data:");
-                System.out.println(data.getBytes());
+                printStream.print("Incoming data:");
+                printStream.println(data.getBytes());
             }
             catch (SerialPortException ex) {
-                System.out.println(ex);
+                printStream.println(ex);
             }
         }
     }

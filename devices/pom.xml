@@ -16,9 +16,9 @@
     </parent>
 
     <modules>
+        <module>common</module>
         <module>posiflex-aura</module>
         <module>atol-fr</module>
-        <module>common</module>
     </modules>
 
 </project>

@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.compiler.version>1.6</java.compiler.version>
+        <java.compiler.version>1.8</java.compiler.version>
         <app.main.class>com.invariant.saleserver.SaleDeviceServerHttpApplication</app.main.class>
         <google.guava.version>19.0</google.guava.version>
         <commons.fileupload.version>1.3.2</commons.fileupload.version>
@@ -32,6 +32,16 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.invariant.devices</groupId>
+            <artifactId>posiflex-aura</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.invariant.devices</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -78,6 +88,11 @@
             <groupId>commons-cli</groupId>
             <artifactId>commons-cli</artifactId>
             <version>${commons.cli.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cfg4j</groupId>
+            <artifactId>cfg4j-core</artifactId>
+            <version>4.4.1</version>
         </dependency>
     </dependencies>
 
@@ -128,39 +143,14 @@
                         </program>
                     </programs>
                     <showConsoleWindow>true</showConsoleWindow>
-                    <configurationSourceDirectory>src/main/resources/devices</configurationSourceDirectory>
+                    <configurationSourceDirectory>src/main/resources/config</configurationSourceDirectory>
+                    <configurationDirectory>config</configurationDirectory>
                     <copyConfigurationDirectory>true</copyConfigurationDirectory>
                     <platforms>
                         <platform>unix</platform>
                         <platform>windows</platform>
                     </platforms>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <finalName>${final.jar.name}</finalName>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>ru.croc.chromenative.HostApplication</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
