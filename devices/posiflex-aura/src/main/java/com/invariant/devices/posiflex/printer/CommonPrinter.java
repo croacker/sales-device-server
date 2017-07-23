@@ -2,6 +2,7 @@ package com.invariant.devices.posiflex.printer;
 
 import com.invariant.devices.check.Check;
 import com.invariant.devices.posiflex.service.DataService;
+import com.invariant.devices.posiflex.service.check.AuraCheck;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -131,7 +132,7 @@ public class CommonPrinter implements Printer {
         }
     }
 
-    public void print(Check check) {
+    public void print(AuraCheck check) {
         throw new NotImplementedException();
     }
 

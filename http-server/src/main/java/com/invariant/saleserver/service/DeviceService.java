@@ -9,18 +9,21 @@ import jssc.SerialPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
  */
 @Service
-@Scope("singleton")
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 @Slf4j
 public class DeviceService {
 
@@ -45,7 +48,7 @@ public class DeviceService {
 
     private Map<String, Printer> printers = new HashMap<>();
 
-    public Printer getPrinter(String id){
+    public Printer getDevice(String id){
         return printers.get(id);
     }
 
@@ -66,4 +69,7 @@ public class DeviceService {
         return serialPortService.getPort(configuration, dataAccumulator.getPrintStream());
     }
 
+    public List<Printer> getDevices() {
+        return printers.values().stream().collect(Collectors.toList());
+    }
 }

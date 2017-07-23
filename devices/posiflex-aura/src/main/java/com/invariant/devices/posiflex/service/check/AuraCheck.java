@@ -1,7 +1,5 @@
 package com.invariant.devices.posiflex.service.check;
 
-import com.invariant.devices.check.Check;
-import com.invariant.devices.check.CheckRow;
 import lombok.Getter;
 import lombok.Setter;
 
