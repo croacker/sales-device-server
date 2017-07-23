@@ -141,8 +141,8 @@
                         </program>
                     </programs>
                     <showConsoleWindow>true</showConsoleWindow>
-                    <configurationSourceDirectory>src/main/resources/config</configurationSourceDirectory>
-                    <configurationDirectory>config</configurationDirectory>
+                    <configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+                    <configurationDirectory>resources</configurationDirectory>
                     <copyConfigurationDirectory>true</copyConfigurationDirectory>
                     <platforms>
                         <platform>unix</platform>
