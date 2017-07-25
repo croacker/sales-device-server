@@ -1,10 +1,10 @@
 package com.invariant.saleserver.http;
 
-import com.invariant.devices.posiflex.printer.Printer;
-import com.invariant.devices.service.serial.SerialPortConfiguration;
-import com.invariant.saleserver.service.DeviceService;
+import com.google.gson.Gson;
 import com.invariant.saleserver.service.HttpService;
 import com.invariant.saleserver.service.JsonService;
+import com.invariant.saleserver.service.TaskService;
+import com.invariant.saleserver.service.task.CheckData;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -13,14 +13,15 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-@Component("devicesListHandler")
+@Component("checkListHandler")
 @Slf4j
-public class DevicesListHandler implements HttpHandler {
+public class CheckListHandler implements HttpHandler {
 
     @Autowired
-    private DeviceService deviceService;
+    private TaskService taskService;
 
     @Autowired
     private HttpService httpService;
@@ -40,16 +41,10 @@ public class DevicesListHandler implements HttpHandler {
     }
 
     private void get(HttpExchange httpExchange) throws IOException {
-        List<SerialPortConfiguration> printersConfigurations = getDevicesConfigurations();
-        httpService.writeJson(httpExchange, jsonService.toJson(printersConfigurations));
+        Map<String, CheckData> printedChecks = taskService.getPrintedChecks();
+        List<CheckData> checks = printedChecks.values().stream().collect(Collectors.toList());
+        httpService.writeJson(httpExchange, jsonService.toJson(checks));
     }
 
-    private Printer getDevice(String id) {
-        return deviceService.getDevice(id);
-    }
-
-    private List<SerialPortConfiguration> getDevicesConfigurations() {
-        return deviceService.getDevices().stream().map(device -> device.getConfiguration()).collect(Collectors.toList());
-    }
 
 }

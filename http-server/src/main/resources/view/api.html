@@ -7,18 +7,22 @@
 <link rel="stylesheet" href="./css/tacit.min.css">
 <link rel="stylesheet" href="./css/styles.css">
 <body>
-<header class="site-header">
-    <div>
-        <div class="header-menu"><p>Доступные ресурсы</p></div>
-    </div>
-</header>
+<div class="head-container">
+    <h1>Доступные методы</h1>
+</div>
 <div class="content">
     <ol class="app-resources">
         <li class="app-resource-item">
-            <a class="app-resource-item-link" href="/api/devices">Устройства</a>
+            <a class="app-resource-item-link" href="/api/serialports">Последовательные порты(GET:./api/serialports)</a>
         </li>
         <li class="app-resource-item">
-            <a class="app-resource-item-link" href="/api/print">Печать чека</a>
+            <a class="app-resource-item-link" href="/api/devices">Устройства(GET:./api/devices)</a>
+        </li>
+        <li class="app-resource-item">
+            <a class="app-resource-item-link" href="/api/checklist">Список напечатаных чеков(GET:./api/checklist)</a>
+        </li>
+        <li class="app-resource-item">
+            <a class="app-resource-item-link" href="/api/print">Печать чека(POST:./api/print)</a>
         </li>
     </ol>
 </div>

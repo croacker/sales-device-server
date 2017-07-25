@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class DeviceService {
     private void init() {
         SerialPortConfiguration configuration = getConfiguration();
         SerialPort serialPort = getSerialPort(configuration);
-        Printer posiflexAura = new Aura6800U(serialPort);
+        Printer posiflexAura = new Aura6800U(configuration, serialPort);
         printers.put(printerAuraId, posiflexAura);
     }
 
@@ -71,5 +72,9 @@ public class DeviceService {
 
     public List<Printer> getDevices() {
         return printers.values().stream().collect(Collectors.toList());
+    }
+
+    public List<String> getSerialPorts() {
+        return Arrays.asList(serialPortService.getPortNames());
     }
 }

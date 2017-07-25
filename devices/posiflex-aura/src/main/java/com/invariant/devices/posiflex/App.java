@@ -7,11 +7,12 @@ import com.invariant.devices.posiflex.service.check.AuraCheck;
 import com.invariant.devices.posiflex.service.check.AuraCheckHeader;
 import com.invariant.devices.posiflex.service.check.AuraCheckRow;
 
+import com.invariant.devices.service.serial.SerialPortConfiguration;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
 /**
- * dev.0.0.1
+ *
  */
 public class App {
 
@@ -24,9 +25,10 @@ public class App {
     }
 
     private void start(){
-        SerialPort serialPort = getSerialPort();
+        SerialPortConfiguration configuration = getDefaultConfiguration();
+        SerialPort serialPort = getSerialPort(configuration);
         try {
-            Aura6800U printer = new Aura6800U(serialPort);
+            Aura6800U printer = new Aura6800U(configuration, serialPort);
             writeTestCheck(printer);
             serialPort.closePort();
         } catch (SerialPortException e) {
@@ -88,12 +90,17 @@ public class App {
 //        printer.printTest();
     }
 
+    private SerialPortConfiguration getDefaultConfiguration(){
+        return SerialPortService.getInstance().getDefaultConfiguration();
+    }
+
     /**
      * ОК
      * @return
+     * @param configuration
      */
-    private SerialPort getSerialPort(){
-        return SerialPortService.getInstance().getPort();
+    private SerialPort getSerialPort(SerialPortConfiguration configuration){
+        return SerialPortService.getInstance().getPort(configuration, System.out);
     }
 
     private class SerialPortMock {

@@ -1,23 +1,23 @@
 package com.invariant.saleserver.http;
 
-import com.google.gson.Gson;
 import com.invariant.devices.posiflex.printer.Printer;
-import com.invariant.saleserver.service.DeviceService;
-import com.invariant.saleserver.service.HttpService;
-import com.invariant.saleserver.service.TaskService;
+import com.invariant.saleserver.service.*;
 import com.invariant.saleserver.service.action.DeviceAction;
 import com.invariant.saleserver.service.action.ResultStatus;
 import com.invariant.saleserver.service.task.CheckData;
 import com.invariant.saleserver.service.task.PrintCheckResult;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import lombok.Cleanup;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
-import java.util.concurrent.ExecutionException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -26,17 +26,20 @@ import java.util.concurrent.TimeoutException;
 @Slf4j
 public class PrintCheckHandler implements HttpHandler {
 
-    @Autowired
+    @Autowired @Getter
     private DeviceService deviceService;
 
-    @Autowired
+    @Autowired @Getter
     private TaskService taskService;
 
-    @Autowired
+    @Autowired @Getter
+    private HtmlService htmlService;
+
+    @Autowired @Getter
     private HttpService httpService;
 
-    @Autowired
-    private Gson gson;
+    @Autowired @Getter
+    private JsonService jsonService;
 
     @Value("${printer.print.timeout}")
     private int printTimeout;
@@ -46,6 +49,8 @@ public class PrintCheckHandler implements HttpHandler {
         String requestMethod = httpExchange.getRequestMethod();
         if (requestMethod.equals("POST")) {
             post(httpExchange);
+        } else if (requestMethod.equals("GET")) {
+            get(httpExchange);
         } else {
             String mesage = "405 Method " + requestMethod + " not allowed ";
             httpService.writeMethodNotAlowed(httpExchange, mesage.getBytes());
@@ -55,7 +60,18 @@ public class PrintCheckHandler implements HttpHandler {
     private void post(HttpExchange httpExchange) throws IOException {
         CheckData checkData = toCheckData(httpExchange.getRequestBody());
         PrintCheckResult result = printCheck(checkData);
-        httpService.writeOk(httpExchange, toJson(result));
+        httpService.writeJson(httpExchange, jsonService.toJson(result));
+    }
+
+    private void get(HttpExchange httpExchange) throws IOException {
+        httpExchange.sendResponseHeaders(200, 0);
+        @Cleanup OutputStream outputStream = httpExchange.getResponseBody();
+        @Cleanup InputStream inputStream = getHtmlService().getCheckExample();
+        final byte[] buffer = new byte[0x10000];
+        int count;
+        while ((count = inputStream.read(buffer)) >= 0) {
+            outputStream.write(buffer,0,count);
+        }
     }
 
     private PrintCheckResult printCheck(CheckData checkData) {
@@ -88,7 +104,7 @@ public class PrintCheckHandler implements HttpHandler {
 
     private CheckData toCheckData(InputStream requestBody) throws IOException {
         String body = readBody(requestBody);
-        return gson.fromJson(body, CheckData.class);
+        return jsonService.fromJson(body, CheckData.class);
     }
 
     private String readBody(InputStream requestBody) throws IOException {
@@ -111,10 +127,6 @@ public class PrintCheckHandler implements HttpHandler {
         result.setStatus(ResultStatus.ERROR.getName());
         result.setDescription(description);
         return result;
-    }
-
-    private byte[] toJson(Object object) {
-        return gson.toJson(object).getBytes();
     }
 
 }

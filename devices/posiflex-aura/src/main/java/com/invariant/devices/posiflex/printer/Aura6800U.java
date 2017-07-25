@@ -1,10 +1,10 @@
 package com.invariant.devices.posiflex.printer;
 
-import com.invariant.devices.check.Check;
 import com.invariant.devices.check.CheckHeader;
 import com.invariant.devices.check.CheckRow;
 import com.invariant.devices.posiflex.service.check.AuraCheck;
 import com.invariant.devices.posiflex.service.check.AuraCheckRow;
+import com.invariant.devices.service.serial.SerialPortConfiguration;
 import jssc.SerialPort;
 
 import java.util.List;
@@ -14,12 +14,8 @@ import java.util.List;
  */
 public class Aura6800U extends CommonPrinter {
 
-    public static final int FONT_SMAL_LINE_COUNT  = 42;
-    public static final int FONT_BIG_LINE_COUNT = 24;
-
-
-    public Aura6800U(SerialPort serialPort) {
-        super(serialPort);
+    public Aura6800U(SerialPortConfiguration configuration, SerialPort serialPort) {
+        super(configuration, serialPort);
     }
 
     public void printTest() {

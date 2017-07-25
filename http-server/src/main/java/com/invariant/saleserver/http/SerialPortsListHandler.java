@@ -1,7 +1,5 @@
 package com.invariant.saleserver.http;
 
-import com.invariant.devices.posiflex.printer.Printer;
-import com.invariant.devices.service.serial.SerialPortConfiguration;
 import com.invariant.saleserver.service.DeviceService;
 import com.invariant.saleserver.service.HttpService;
 import com.invariant.saleserver.service.JsonService;
@@ -13,11 +11,13 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Component("devicesListHandler")
+/**
+ *
+ */
+@Component("serialPortsListHandler")
 @Slf4j
-public class DevicesListHandler implements HttpHandler {
+public class SerialPortsListHandler implements HttpHandler {
 
     @Autowired
     private DeviceService deviceService;
@@ -40,16 +40,11 @@ public class DevicesListHandler implements HttpHandler {
     }
 
     private void get(HttpExchange httpExchange) throws IOException {
-        List<SerialPortConfiguration> printersConfigurations = getDevicesConfigurations();
-        httpService.writeJson(httpExchange, jsonService.toJson(printersConfigurations));
+        List<String> serialPorts = getSerialPorts();
+        httpService.writeJson(httpExchange, jsonService.toJson(serialPorts));
     }
 
-    private Printer getDevice(String id) {
-        return deviceService.getDevice(id);
+    private List<String> getSerialPorts(){
+        return deviceService.getSerialPorts();
     }
-
-    private List<SerialPortConfiguration> getDevicesConfigurations() {
-        return deviceService.getDevices().stream().map(device -> device.getConfiguration()).collect(Collectors.toList());
-    }
-
 }

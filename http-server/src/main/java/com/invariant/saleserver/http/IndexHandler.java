@@ -29,7 +29,7 @@ public class IndexHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        log.info("Process request:" + getGson().toJson(httpExchange.getRequestHeaders()));
+//        log.info("Process request:" + getGson().toJson(httpExchange.getRequestHeaders()));
         httpExchange.sendResponseHeaders(200, 0);
         @Cleanup OutputStream outputStream = httpExchange.getResponseBody();
         @Cleanup InputStream inputStream = getHtmlService().getIndex();

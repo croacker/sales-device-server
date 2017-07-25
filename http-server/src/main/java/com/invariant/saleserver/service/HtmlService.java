@@ -25,4 +25,7 @@ public class HtmlService {
         return getResourceService().get("/view/api.html");
     }
 
+    public InputStream getCheckExample(){
+        return getResourceService().get("/view/checkExample.html");
+    }
 }

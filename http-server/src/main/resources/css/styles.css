@@ -1,6 +1,16 @@
 .site-header{
     margin-bottom: 0px;
 }
+
+.head-caption{
+    float:left;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.head-api-button{
+}
+
 .app-resource-item {
     list-style-type: none;
 }

@@ -12,6 +12,12 @@ public class PrintCheckTask implements Callable<PrintCheckResult> {
     private final CheckData checkData;
     private final Printer printer;
 
+    private String taskId;
+
+    public void setTaskId(String value) {
+        taskId = value;
+    }
+
     public PrintCheckTask(CheckData checkData, Printer printer) {
         this.checkData = checkData;
         this.printer = printer;

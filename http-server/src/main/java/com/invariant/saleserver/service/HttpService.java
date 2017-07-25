@@ -17,8 +17,9 @@ import java.nio.charset.StandardCharsets;
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class HttpService {
 
-    public void writeOk(HttpExchange httpExchange, byte[] data) throws IOException {
-        httpExchange.sendResponseHeaders(200, 0);
+    public void writeJson(HttpExchange httpExchange, byte[] data) throws IOException {
+        httpExchange.sendResponseHeaders(200, data.length);
+        httpExchange.getResponseHeaders().set("Content-Type", "application/json; charset=UTF-8");
         httpExchange.getResponseBody().write(data);
         httpExchange.getResponseBody().close();
     }

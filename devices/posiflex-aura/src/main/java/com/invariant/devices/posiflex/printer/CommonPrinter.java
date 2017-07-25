@@ -1,8 +1,8 @@
 package com.invariant.devices.posiflex.printer;
 
-import com.invariant.devices.check.Check;
 import com.invariant.devices.posiflex.service.DataService;
 import com.invariant.devices.posiflex.service.check.AuraCheck;
+import com.invariant.devices.service.serial.SerialPortConfiguration;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -18,6 +18,8 @@ public class CommonPrinter implements Printer {
 
     private SerialPort serialPort;
 
+    private SerialPortConfiguration configuration;
+
     public SerialPort getSerialPort() {
         return serialPort;
     }
@@ -26,7 +28,13 @@ public class CommonPrinter implements Printer {
         this.serialPort = serialPort;
     }
 
-    public CommonPrinter(SerialPort serialPort) {
+    @Override
+    public SerialPortConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    public CommonPrinter(SerialPortConfiguration configuration, SerialPort serialPort) {
+        this.configuration = configuration;
         this.serialPort = serialPort;
     }
 

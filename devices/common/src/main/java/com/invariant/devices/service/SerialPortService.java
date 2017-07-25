@@ -29,10 +29,14 @@ public class SerialPortService {
         return instance;
     }
 
-    public SerialPort getPort() {
-        SerialPortConfiguration configuration = SerialPortConfiguration.getBuilder().setName(PORT_NAME)
+    public SerialPortConfiguration getDefaultConfiguration() {
+        return SerialPortConfiguration.getBuilder().setName(PORT_NAME)
                 .setBaudRate("9600").setDataBits("8").setStopBits("1")
                 .setParity("0").build();
+    }
+
+    public SerialPort getPort() {
+        SerialPortConfiguration configuration = getDefaultConfiguration();
         return getPort(configuration, System.out);
     }
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='../css/tacit.min.css'>
+    <link rel='stylesheet' href='../css/styles.css'>
+</head>
+<title>Пример JSON чека</title>
+<body>
+<div class='head-container'>
+    <div class='head-caption'>
+        <h2>Пример JSON,<br>для POST-запроса<br>на печать чека</h2>
+    </div>
+</div>
+<div id="check-json-examlple">
+<pre>
+{
+  "device": {
+    "id": "posiflexAura"
+  },
+  "check": {
+    "header": {
+      "orderNumber": "7_970",
+      "posNumber": "1",
+      "checkNumber": "77000972",
+      "dateTime": "28/06/2017 18:49:57",
+      "waiter": "Сергей",
+      "table": "3.5"
+    },
+    "rows": [
+      {
+        "guest": "ГОСТЬ 2",
+        "count": "1",
+        "goodName": "КАРТОФЕЛЬ ФРИ"
+      },
+      {
+        "count": "1",
+        "goodName": "САЛАТ ФРАНЦУЗСКИЙ"
+      },
+      {
+        "guest": "ГОСТЬ 3",
+        "count": "1",
+        "goodName": "САЛАТ ПТИЧКА"
+      },
+      {
+        "guest": "ГОСТЬ 4",
+        "count": "1",
+        "goodName": "САЛАТ ФРАНЦУЗСКИЙ"
+      },
+      {
+        "guest": "ГОСТЬ 6",
+        "count": "1",
+        "goodName": "САЛАТ ГРЕЧЕСКИЙ"
+      },
+      {
+        "count": "2",
+        "goodName": "ПОЗЫ КЛАССИЧЕСКИЕ"
+      }
+    ]
+  }
+}
+</pre>
+</div>
+</body>
+</html>

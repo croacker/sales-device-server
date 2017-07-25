@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -28,9 +33,23 @@ public class TaskService {
 
     private ExecutorService executorService;
 
+    private Map<String, CheckData> printedChecks = new HashMap<>();
+
     public Future<PrintCheckResult> printCheck(CheckData checkData, Printer printer){
         PrintCheckTask task = new PrintCheckTask(checkData, printer);
+        String taskId = addCheck(checkData);
+        task.setTaskId(taskId);
         return executorService.submit(task);
+    }
+
+    public Map<String, CheckData> getPrintedChecks(){
+        return printedChecks;
+    }
+
+    private String addCheck(CheckData checkData){
+        String timestamp = String.valueOf(new Date().getTime());
+        printedChecks.put(timestamp, checkData);
+        return timestamp;
     }
 
     @PostConstruct
