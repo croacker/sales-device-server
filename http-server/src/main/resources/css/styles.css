@@ -8,9 +8,28 @@
     padding-top: 5px;
 }
 
+.example-head-container{
+    float:left;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
 .head-api-button{
+}
+
+.api-method-title{
+    float:left;
+    padding-top: 7px;
+    padding-right: 7px;
+    margin: 0px;
+    width: 535px;
+}
+
+.api-method-button{
+    margin: 0px;
 }
 
 .app-resource-item {
     list-style-type: none;
 }
+

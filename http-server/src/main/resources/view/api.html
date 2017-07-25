@@ -7,24 +7,41 @@
 <link rel="stylesheet" href="./css/tacit.min.css">
 <link rel="stylesheet" href="./css/styles.css">
 <body>
+<section>
 <div class="head-container">
-    <h1>Доступные методы</h1>
+    <h1>Доступные методы API</h1>
 </div>
 <div class="content">
     <ol class="app-resources">
         <li class="app-resource-item">
-            <a class="app-resource-item-link" href="/api/serialports">Последовательные порты(GET:./api/serialports)</a>
+            <p class="api-method-title">Последовательные порты <code>GET:http://host:port/api/serialports</code></p>
+            <form class="api-method-button" action='/api/serialports'>
+                <input type='submit' value='GET'/>
+            </form>
         </li>
         <li class="app-resource-item">
-            <a class="app-resource-item-link" href="/api/devices">Устройства(GET:./api/devices)</a>
+            <p class="api-method-title">Устройства<code>GET:http://host:port/api/devices</code></p>
+            <form class="api-method-button" action='/api/devices'>
+                <input type='submit' value='GET'/>
+            </form>
         </li>
         <li class="app-resource-item">
-            <a class="app-resource-item-link" href="/api/checklist">Список напечатаных чеков(GET:./api/checklist)</a>
+            <p class="api-method-title">Список напечатаных чеков<code>GET:http://host:port/api/checklist</code></p>
+            <form class="api-method-button" action='/api/checklist'>
+                <input type='submit' value='GET'/>
+            </form>
         </li>
         <li class="app-resource-item">
-            <a class="app-resource-item-link" href="/api/print">Печать чека(POST:./api/print)</a>
+            <p class="api-method-title">Печать чека<code>POST:http://host:port/api/print</code></p>
+            <form class="api-method-button" action='/api/print'>
+                <input type='submit' value='GET'/>
+            </form>
         </li>
     </ol>
 </div>
+    <form class="api-method-button" action='/'>
+        <input type='submit' value='Назад'/>
+    </form>
+</section>
 </body>
 </html>
